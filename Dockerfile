@@ -6,3 +6,4 @@ RUN mvn clean && mvn install
 
 FROM tomcat:8.0-jre7-alpine
 COPY --from=build /app/target/*.war /usr/local/tomcat/webapps/
+COPY --from=build /app/Config.properties /usr/local/tomcat/ROOT/Config.properties
