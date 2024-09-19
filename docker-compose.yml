@@ -2,7 +2,9 @@
 services:
 
     tomcat:
-        image:  tomcat:8.0-jre7-alpine
+        build:
+            context: .
+            dockerfile: Dockerfile
         hostname: tomcat
         restart: on-failure
         environment:
@@ -12,19 +14,6 @@ services:
           DB_NAME: app42paas
         ports:
           - "8080:8080"
-        volumes:
-          - type: volume
-            source: webapps
-            target: /usr/local/tomcat/webapps
-
-    build:
-        build:
-            context: .
-            dockerfile: Dockerfile
-        volumes:
-          - type: volume
-            source: webapps
-            target: /webapps
           
     mysql:
         image: mysql:5.5
@@ -44,5 +33,4 @@ services:
             target: /var/lib/mysql
 
 volumes:
-    webapps:
     mysql:
