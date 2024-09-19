@@ -1,4 +1,5 @@
 FROM maven:3-jdk-7-alpine as build
+RUN mkdir -p /webapps
 RUN mkdir -p app
 COPY . app/
 WORKDIR app
