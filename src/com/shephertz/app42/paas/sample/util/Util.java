@@ -12,7 +12,7 @@ public class Util {
 	static File dbFile = null;
 	static {
 		try {
-			dbFile = new File("ROOT/Config.properties");
+			dbFile = new File("webapps/App42PaaS-Java-MySQL-Sample-0.0.1-SNAPSHOT/Config.properties");
 			dbProps.load(new FileInputStream(dbFile.getAbsolutePath()));
 		} catch (FileNotFoundException e) {
 			throw new RuntimeException(e);
