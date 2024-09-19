@@ -3,6 +3,7 @@ services:
 
     tomcat:
         image:  tomcat:8.0-jre7-alpine
+        hostname: tomcat
         restart: on-failure
         environment:
           DB_USERNAME: shephertz
@@ -27,6 +28,7 @@ services:
           
     mysql:
         image: mysql:5.5
+        hostname: mysql
         ports:
           - "3306:3306"
           - "33060:33060"
