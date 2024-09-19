@@ -1,0 +1,41 @@
+---
+services:
+
+    tomcat:
+        image:  tomcat:8.0-jre7-alpine
+        restart: on-failure
+        ports:
+          - "8080:8080"
+        volumes:
+          - type: volume
+            source: webapps
+            target: /usr/local/tomcat/webapps
+
+    build:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        volumes:
+          - type: volume
+            source: webapps
+            target: /webapps
+          
+    mysql:
+        image: mysql:5.5
+        ports:
+          - "3306:3306"
+          - "33060:33060"
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: rootsecret
+            MYSQL_DATABASE: app42paas
+            MYSQL_USER: shephertz
+            MYSQL_PASSWORD: secret
+        volumes:
+          - type: volume
+            source: mysql
+            target: /var/lib/mysql
+
+volumes:
+    webapps:
+    mysql:
