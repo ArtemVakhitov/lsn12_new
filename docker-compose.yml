@@ -1,6 +1,23 @@
 ---
 services:
 
+    mysql:
+        image: mysql:5.5
+        hostname: mysql
+        ports:
+          - "3306:3306"
+          - "33060:33060"
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: rootsecret
+            MYSQL_DATABASE: app42paas
+            MYSQL_USER: shephertz
+            MYSQL_PASSWORD: secret
+        volumes:
+          - type: volume
+            source: mysql
+            target: /var/lib/mysql
+
     tomcat:
         image:  tomcat:8.0-jre7-alpine
         hostname: tomcat
@@ -25,23 +42,6 @@ services:
           - type: volume
             source: webapps
             target: /webapps
-          
-    mysql:
-        image: mysql:5.5
-        hostname: mysql
-        ports:
-          - "3306:3306"
-          - "33060:33060"
-        restart: always
-        environment:
-            MYSQL_ROOT_PASSWORD: rootsecret
-            MYSQL_DATABASE: app42paas
-            MYSQL_USER: shephertz
-            MYSQL_PASSWORD: secret
-        volumes:
-          - type: volume
-            source: mysql
-            target: /var/lib/mysql
 
 volumes:
     webapps:
