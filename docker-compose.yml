@@ -4,6 +4,11 @@ services:
     tomcat:
         image:  tomcat:8.0-jre7-alpine
         restart: on-failure
+        environment:
+          DB_USERNAME: shephertz
+          DB_PASSWORD: secret
+          DB_IP: mysql
+          DB_NAME: appapp42paas
         ports:
           - "8080:8080"
         volumes:
