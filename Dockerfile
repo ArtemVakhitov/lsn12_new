@@ -1,6 +1,5 @@
-FROM maven:3-jdk-7-alpine
-RUN mkdir /webapps
+FROM maven:3-jdk-7-alpine as build
 RUN mkdir -p app
 COPY . app/
 WORKDIR app
-RUN mvn clean && mvn install && cp target/*.war /webapps/
+RUN mvn package && cp target/*.war /webapps/
